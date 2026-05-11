@@ -96,13 +96,13 @@ export function JobDetail({ id }: { id: string }) {
           </div>
         </div>
 
-        <div className="p-6 rounded-2xl bg-muted/50 border border-border/50 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div>
-            <p className="text-sm text-muted-foreground font-medium mb-1">Salary Range</p>
+        {/* <div className="p-6 rounded-2xl bg-muted/50 border border-border/50 flex flex-col sm:flex-row items-center justify-between gap-6">
+          {/* <div>
+            <p className="text-sm text-muted-foreground font-medium mb-1">Salary</p>
             <p className="text-2xl font-bold">{job.salary}</p>
-          </div>
-          <Link href={`${ROUTES.JOBS}/${job.id}/apply`} className={buttonVariants({ size: "lg", className: "w-full sm:w-auto rounded-full px-8 text-lg" })}>Apply Now</Link>
-        </div>
+          </div> */}
+          {/* <Link href={`${ROUTES.JOBS}/${job.id}/apply`} className={buttonVariants({ size: "lg", className: "w-full sm:w-auto rounded-full px-8 text-lg ml-170" })}>Apply Now</Link>
+        </div>  */}
       </motion.div>
 
       {/* Job Content */}
@@ -117,7 +117,7 @@ export function JobDetail({ id }: { id: string }) {
           <p>{job.description}</p>
         </section>
 
-        <section>
+        {/* <section>
           <h2 className="text-2xl font-heading font-bold text-foreground mb-4">What You'll Do</h2>
           <ul className="space-y-3">
             {job.responsibilities.map((item, index) => (
@@ -127,7 +127,7 @@ export function JobDetail({ id }: { id: string }) {
               </li>
             ))}
           </ul>
-        </section>
+        </section> */}
 
         <section>
           <h2 className="text-2xl font-heading font-bold text-foreground mb-4">What We're Looking For</h2>
@@ -141,7 +141,7 @@ export function JobDetail({ id }: { id: string }) {
           </ul>
         </section>
 
-        <section>
+        {/* <section>
           <h2 className="text-2xl font-heading font-bold text-foreground mb-4">Perks & Benefits</h2>
           <ul className="space-y-3">
             {job.perks.map((item, index) => (
@@ -151,7 +151,7 @@ export function JobDetail({ id }: { id: string }) {
               </li>
             ))}
           </ul>
-        </section>
+        </section> */}
 
         <section>
           <h2 className="text-2xl font-heading font-bold text-foreground mb-4">Skills</h2>

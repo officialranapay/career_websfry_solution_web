@@ -11,7 +11,7 @@ export interface Job {
   title: string;
   department: JobCategory;
   location: string;
-  type: "Full-time" | "Part-time" | "Contract" | "Internship";
+  type: "Day" | "Night" | "Flexible";
   experience: string; // e.g., "2-4 years"
   salary: string; // e.g., "$120k - $150k"
   skills: string[];
