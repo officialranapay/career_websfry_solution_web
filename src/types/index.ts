@@ -18,22 +18,22 @@ export interface Job {
   description: string;
   responsibilities: string[];
   requirements: string[];
-  perks: string[];
+  perks: string[];   
   postedAt: string; // ISO date string
   featured?: boolean;
 }
 
-export type ApplicationStatus = "Submitted" | "Seen" | "Rejected";
+export type ApplicationStatus = "Submitted" | "Seen" | "Pending";
 
 export interface Application {
   id: string;
   candidateId: string;
   jobId: string;
-  jobTitle: string;
+  title: string;
   name: string;
   email: string;
   status: ApplicationStatus;
-  appliedAt: string; // ISO date string
+  createdAt: string; // ISO date string
 }
 
 export interface PaginatedResponse<T> {

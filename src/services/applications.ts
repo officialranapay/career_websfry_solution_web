@@ -1,29 +1,3 @@
-// import { apiClient } from "./api-client";
-// // import { MOCK_APPLICATIONS } from "@/lib/mock-data";
-// import { Application } from "@/types";
-// import { ApplicationFormData } from "@/schemas/application";
-
-// export const applicationsService = {
-//   async getApplications(): Promise<Application[]> {
-//     // In a real app, this would fetch by the logged-in user's ID
-//     return apiClient.get(MOCK_APPLICATIONS);
-//   },
-
-//   async submitApplication(jobId: string, jobTitle: string, data: ApplicationFormData): Promise<{ candidateId: string; applicationId: string }> {
-//     // Simulate creating a new application
-//     const newApplication = {
-//       candidateId: `cand-${Math.floor(Math.random() * 100000)}`,
-//       applicationId: `app-${Math.floor(Math.random() * 100000)}`,
-//       // ... we don't need to persist to mock data since we only simulate it for now
-//     };
-    
-//     return apiClient.post(newApplication);
-    
-//   },
-// };
-
-
-
 import { apiClient } from "./api-client";
 import { Application } from "@/types";
 import { ApplicationFormData } from "@/schemas/application";
@@ -58,3 +32,126 @@ export const applicationsService = {
     return response;
   },
 };
+
+
+
+
+// import { apiClient } from "./api-client";
+
+// import {
+//   Application,
+// } from "@/types";
+
+// import {
+//   ApplicationFormData,
+// } from "@/schemas/application";
+
+// export const applicationsService = {
+
+//   // GET APPLIED JOBS
+
+//   async getApplications():
+//     Promise<Application[]> {
+
+//     return apiClient.get<Application[]>(
+//       "/applications/my-applications"
+//     );
+//   },
+
+//   //APPLY JOB
+
+//   async submitApplication(
+//     jobId: string,
+//     jobTitle: string,
+//     data: ApplicationFormData
+//   ): Promise<{
+//     candidateId: string;
+//     applicationId: string;
+//   }> {
+
+//     const payload = {
+//       jobId,
+//       jobTitle,
+//       ...data,
+//     };
+
+//     return apiClient.post<{
+//       candidateId: string;
+//       applicationId: string;
+//     }>(
+//       "/applications/apply",
+//       payload
+//     );
+//   },
+// };
+
+
+
+
+
+// import { apiClient } from "./api-client";
+
+// import {
+//   Application,
+// } from "@/types";
+
+// import {
+//   ApplicationFormData,
+// } from "@/schemas/application";
+
+// export const applicationsService = {
+
+//   // GET APPLIED JOBS
+
+//   async getApplications():
+//     Promise<Application[]> {
+
+//     const response = await apiClient.get<any[]>(
+//       "/applications/my-applications"
+//     );
+
+//     return response.map((app) => ({
+//       id: app._id,
+
+//       candidateId: app.user,
+
+//       jobId: app.job?._id,
+
+//       title: app.job?.title,
+
+//       name: app.fullName,
+
+//       email: app.email,
+
+//       status: app.status,
+
+//       createdAt: app.createdAt,
+//     }));
+//   },
+
+//   // APPLY JOB
+
+//   async submitApplication(
+//     jobId: string,
+//     jobTitle: string,
+//     data: ApplicationFormData
+//   ): Promise<{
+//     candidateId: string;
+//     applicationId: string;
+//   }> {
+
+//     const payload = {
+//       jobId,
+//       jobTitle,
+//       ...data,
+//     };
+
+//     return apiClient.post<{
+//       candidateId: string;
+//       applicationId: string;
+//     }>(
+//       "/applications/apply",
+//       payload
+//     );
+//   },
+//};

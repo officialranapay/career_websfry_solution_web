@@ -9,7 +9,6 @@ import { Card } from "@/components/ui/card";
 
 export function AppliedJobsList() {
   const { data: applications, isLoading } = useApplications();
-
   if (isLoading) {
     return (
       <div className="space-y-4">
@@ -41,7 +40,6 @@ export function AppliedJobsList() {
     
     return { total, underReview, submitted };
   };
-
   const summary = getStatusSummary();
 
   return (
@@ -71,24 +69,24 @@ export function AppliedJobsList() {
         </div>
         
         <div className="divide-y divide-border/50">
-          {applications.map((app, index) => (
+          {applications.map((app, index) => ( 
             <motion.div 
-              key={app.id}
+              key={app?.id || index}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
               className="p-6 hover:bg-muted/10 transition-colors flex flex-col md:grid md:grid-cols-12 gap-4 md:items-center"
             >
               <div className="col-span-5">
-                <h4 className="font-semibold text-lg mb-1">{app.jobTitle}</h4>
+                <h4 className="font-semibold text-lg mb-1">{app?.title}</h4>
                 <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                  <span className="flex items-center gap-1"><Building className="w-3.5 h-3.5" /> Websfry Solutions</span>
+                  <span className="flex items-center gap-1"><Building className="w-3.5 h-3.5" />Websfry Solutions </span>
                 </div>
               </div>
               
               <div className="col-span-3 flex items-center gap-2 text-sm text-muted-foreground mt-2 md:mt-0">
                 <Calendar className="w-4 h-4 md:hidden" />
-                {new Date(app.appliedAt).toLocaleDateString(undefined, { 
+                {new Date(app?.createdAt).toLocaleDateString(undefined, { 
                   year: 'numeric', 
                   month: 'long', 
                   day: 'numeric' 
@@ -98,7 +96,7 @@ export function AppliedJobsList() {
               <div className="col-span-4 mt-4 md:mt-0">
                 <StatusBadge status={app.status} />
                 <p className="text-xs text-muted-foreground mt-2">
-                  Application ID: {app.id}
+                  Application ID: {app.id || "N/A"}
                 </p>
               </div>
             </motion.div>
