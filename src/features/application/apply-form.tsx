@@ -84,12 +84,16 @@ const onSubmit = async (
     const userId =
     localStorage.getItem("userId");
 
-    const verifiedPhone =
-    localStorage.getItem("verifiedPhone");
+    // const verifiedPhone =
+    // localStorage.getItem("verifiedPhone");
+
+    const verifiedEmail =
+    localStorage.getItem("verifiedEmail");
+    
 
     if (
       userId &&
-      verifiedPhone === data.phone
+      verifiedEmail === data.email
     )
 
 
@@ -119,7 +123,7 @@ const onSubmit = async (
     setFormData(data);
 
     await authService.requestOtp(
-      data.phone
+      data.email
     );
 
     setShowOtpModal(true);
@@ -151,20 +155,27 @@ const handleVerifyOtp = async () => {
      setErrorMessage("");
 
     const response = await authService.verifyOtp(
-      formData.phone,
+      formData.email,
       otp
     );
 
    // updated code 
      localStorage.setItem(
-  "verifiedPhone",
-  formData.phone
+  "verifiedEmail",
+  formData.email
 );
 
     localStorage.setItem(
       "userId",
-      response.userId
+      response.user.id
     );
+
+
+      localStorage.setItem(
+      "accessToken",
+      response.accessToken
+    );
+
 
     // FINAL APPLICATION SUBMIT
 
@@ -584,7 +595,7 @@ const handleVerifyOtp = async () => {
     <div className="space-y-4">
 
       <p className="text-sm text-muted-foreground">
-        Enter OTP sent to your mobile number
+        Enter OTP sent to your Email 
       </p>
 
       <Input

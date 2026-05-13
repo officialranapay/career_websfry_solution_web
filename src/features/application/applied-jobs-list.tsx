@@ -7,18 +7,254 @@ import { StatusBadge } from "@/components/shared/status-badge";
 import { MapPin, Calendar, Building, Briefcase } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
+// adding  updated imports for login 130526
+import { useEffect, useState } from "react";
+//import { OtpLoginModal } from "@/components/shared/otp-login-modal";
+
 export function AppliedJobsList() {
-  const { data: applications, isLoading } = useApplications();
+
+  // adding updated state for login 130526
+   const [showOtpModal, setShowOtpModal] =useState(false);
+  //  const [userId, setUserId] =useState<string | null>(null);
+   const [token,setToken] = useState<string | null>(null);
+    // updated code
+  const [email, setEmail] = useState("");
+  const [otp, setOtp] =useState("");
+  const [step, setStep] =useState<"email" | "otp">(  "email");
+  const [loading, setLoading] =useState(false);
+
+ 
+
+   useEffect(() => {
+
+    // const storedUserId =
+    //   localStorage.getItem("userId");
+
+    const storedToken = localStorage.getItem('accessToken')  
+
+    if (storedToken) {
+
+      setToken(storedToken);
+    }
+
+  }, []);
+
+
+  //replace  updated code for login 130526
+   const {
+  data: applications,
+  isLoading,
+  refetch,
+} = useApplications();
+
+ const handleSendOtp =
+    async () => {
+
+      try {
+
+        setLoading(true);
+
+        const response =
+          await fetch(
+            "http://localhost:5000/api/auth/request-otp",
+            {
+              method: "POST",
+
+              headers: {
+                "Content-Type":
+                  "application/json",
+              },
+
+              body: JSON.stringify({
+                email,
+              }),
+            }
+          );
+
+        if (!response.ok) {
+
+          throw new Error(
+            "Failed to send OTP"
+          );
+        }
+
+        setStep("otp");
+
+      } catch (error) {
+
+        console.error(error);
+
+        alert("Failed to send OTP");
+
+      } finally {
+
+        setLoading(false);
+      }
+    };
+
+
+    // =========================
+  // VERIFY OTP
+  // =========================
+
+  const handleVerifyOtp =
+    async () => {
+
+      try {
+
+        setLoading(true);
+
+        const response =
+          await fetch(
+            "http://localhost:5000/api/auth/verify-otp",
+            {
+              method: "POST",
+
+              headers: {
+                "Content-Type":
+                  "application/json",
+              },
+
+              body: JSON.stringify({
+                email,
+                otp,
+              }),
+            }
+          );
+
+        const data =
+          await response.json();
+
+        if (!response.ok) {
+
+          throw new Error(
+            data.message ||
+            "OTP verification failed"
+          );
+        }
+
+        // SAVE USER ID
+
+        localStorage.setItem(
+          "accessToken",
+          data.accessToken
+        );
+
+        setToken(data.accessToken);
+
+        refetch();
+
+      } catch (error) {
+
+        console.error(error);
+
+        alert("Invalid OTP");
+
+      } finally {
+
+        setLoading(false);
+      }
+    };
+
+     // =========================
+  // LOADING
+  // =========================
+
   if (isLoading) {
+
     return (
       <div className="space-y-4">
         {[1, 2, 3].map((i) => (
-          <Skeleton key={i} className="h-32 w-full rounded-2xl" />
+          <Skeleton
+            key={i}
+            className="h-32 w-full rounded-2xl"
+          />
         ))}
       </div>
     );
   }
 
+
+  // =========================
+  // LOGIN COMPONENT
+  // =========================
+
+  if (!token) {
+
+    return (
+
+      <div className="min-h-[70vh] flex items-center justify-center">
+
+        <div className="w-full max-w-md bg-card border border-border rounded-3xl p-8 shadow-sm">
+
+          <h2 className="text-3xl font-bold text-center mb-2">
+            Login First
+          </h2>
+
+          <p className="text-muted-foreground text-center mb-8">
+            Verify your Email
+            to see applied jobs
+          </p>
+
+          {step === "email" ? (
+
+            <div className="space-y-4">
+
+              <input
+                type="text"
+                placeholder="Enter Mobile Number"
+                value={email}
+                onChange={(e) =>
+                  setEmail(e.target.value)
+                }
+                className="w-full border border-border rounded-xl px-4 py-3 bg-background outline-none"
+              />
+
+              <button
+                onClick={handleSendOtp}
+                disabled={loading}
+                className="w-full bg-black text-white rounded-xl py-3"
+              >
+                {loading
+                  ? "Sending..."
+                  : "Send OTP"}
+              </button>
+
+            </div>
+
+          ) : (
+
+            <div className="space-y-4">
+
+              <input
+                type="text"
+                placeholder="Enter OTP"
+                value={otp}
+                onChange={(e) =>
+                  setOtp(e.target.value)
+                }
+                className="w-full border border-border rounded-xl px-4 py-3 bg-background outline-none"
+              />
+
+              <button
+                onClick={handleVerifyOtp}
+                disabled={loading}
+                className="w-full bg-black text-white rounded-xl py-3"
+              >
+                {loading
+                  ? "Verifying..."
+                  : "Verify OTP"}
+              </button>
+
+            </div>
+          )}
+
+        </div>
+      </div>
+    );
+  }
+
+  // currect code for job applied 130526
   if (!applications || applications.length === 0) {
     return (
       <div className="text-center py-20 bg-muted/20 border border-dashed border-border/50 rounded-3xl">
@@ -32,6 +268,38 @@ export function AppliedJobsList() {
       </div>
     );
   }
+
+
+  // updated replace code 130526
+//   if (!applications || applications.length === 0) {
+
+//   return (
+
+//     <>
+//       <div className="text-center py-20 bg-muted/20 border border-dashed border-border/50 rounded-3xl">
+
+//         <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-6">
+//           <Briefcase className="h-8 w-8 text-muted-foreground" />
+//         </div>
+
+//         <h3 className="text-xl font-heading font-semibold mb-2">
+//           No applications yet
+//         </h3>
+
+//         <p className="text-muted-foreground max-w-sm mx-auto">
+//           You haven't applied to any roles yet.
+//           Explore our open positions and find your next opportunity!
+//         </p>
+
+//       </div>
+
+//       {/* <OtpLoginModal
+//         isOpen={showOtpModal}
+//         onSuccess={handleOtpSuccess}
+//       /> */}
+//     </>
+//   );
+// }
 
   const getStatusSummary = () => {
     const total = applications.length;

@@ -2,28 +2,35 @@ import { apiClient } from "./api-client";
 
 interface VerifyOtpResponse {
   success: boolean;
-  userId: string;
+  accessToken: string;
+
+user:{
+  id:string;
+  email:string;
+
+}
+
 }
 
 export const authService = {
 
-  async requestOtp(phone: string) {
+  async requestOtp(email: string) {
 
     return apiClient.post(
       "/auth/request-otp",
-      { phone }
+      { email }
     );
   },
 
   async verifyOtp(
-    phone: string,
+    email: string,
     otp: string
   ): Promise<VerifyOtpResponse> {
 
     return apiClient.post<VerifyOtpResponse>(
       "/auth/verify-otp",
       {
-        phone,
+        email,
         otp,
       }
     );

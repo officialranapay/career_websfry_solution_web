@@ -77,11 +77,11 @@ export const apiClient = {
 
     if (typeof window !== "undefined") {
 
-      const userId =
-        localStorage.getItem("userId");
+      const accessToken =
+        localStorage.getItem("accessToken");
 
-      if (userId) {
-        headers["x-user-id"] = userId;
+      if (accessToken) {
+        headers["Authorization"] = `Bearer ${accessToken}`;
       }
     }
 
@@ -120,11 +120,12 @@ export const apiClient = {
 
     if (typeof window !== "undefined") {
 
-      const userId =
-        localStorage.getItem("userId");
+     
+      const accessToken =
+        localStorage.getItem("accessToken");
 
-      if (userId) {
-        headers["x-user-id"] = userId;
+      if (accessToken) {
+        headers["Authorization"] = `Bearer ${accessToken}`;
       }
     }
 

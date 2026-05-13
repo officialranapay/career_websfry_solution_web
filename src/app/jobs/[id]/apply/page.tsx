@@ -14,6 +14,9 @@ export const metadata: Metadata = {
 export default async function ApplyPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = await params;
   
+
+
+  // console.log("this is job page")
   // In a real app we'd fetch this Server-Side, but for this mock we'll use our service directly
   // Actually, because it's a mock that returns a Promise, we can just await it
   const job = await jobsService.getJobById(resolvedParams.id).catch(() => null);
