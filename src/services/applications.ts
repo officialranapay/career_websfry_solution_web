@@ -1,37 +1,39 @@
-import { apiClient } from "./api-client";
-import { Application } from "@/types";
-import { ApplicationFormData } from "@/schemas/application";
+// apply form ke liye currect code -:
 
-export const applicationsService = {
-  async getApplications(): Promise<Application[]> {
-    const response = await apiClient.get<Application[]>("/applications");
+// import { apiClient } from "./api-client";
+// import { Application } from "@/types";
+// import { ApplicationFormData } from "@/schemas/application";
 
-    return response;
-  },
+// export const applicationsService = {
+//   async getApplications(): Promise<Application[]> {
+//     const response = await apiClient.get<Application[]>("/applications");
 
-  async submitApplication(
-    jobId: string,
-    jobTitle: string,
-    data: ApplicationFormData
-  ): Promise<{
-    candidateId: string;
-    applicationId: string;
-  }> {
+//     return response;
+//   },
 
-    const payload = {
-      jobId,
-      jobTitle,
-      ...data,
-    };
+//   async submitApplication(
+//     jobId: string,
+//     jobTitle: string,
+//     data: ApplicationFormData
+//   ): Promise<{
+//     candidateId: string;
+//     applicationId: string;
+//   }> {
 
-    const response = await apiClient.post<{ candidateId: string; applicationId: string }>(
-      "/applications/apply",
-      payload
-    );
+//     const payload = {
+//       jobId,
+//       jobTitle,
+//       ...data,
+//     };
 
-    return response;
-  },
-};
+//     const response = await apiClient.post<{ candidateId: string; applicationId: string }>(
+//       "/applications/apply",
+//       payload
+//     );
+
+//     return response;
+//   },
+// };
 
 
 
@@ -87,71 +89,79 @@ export const applicationsService = {
 
 
 
+// changes for applied form
 
+import { apiClient } from "./api-client";
 
-// import { apiClient } from "./api-client";
+import { Application } from "@/types";
 
-// import {
-//   Application,
-// } from "@/types";
+import { ApplicationFormData } from "@/schemas/application";
 
-// import {
-//   ApplicationFormData,
-// } from "@/schemas/application";
+export const applicationsService = {
 
-// export const applicationsService = {
+  // GET APPLIED JOBS
 
-//   // GET APPLIED JOBS
+  async getApplications(): Promise<Application[]> {
 
-//   async getApplications():
-//     Promise<Application[]> {
+  const response = await apiClient.get<any>(
+    "/applications/my-applications"
+  );
 
-//     const response = await apiClient.get<any[]>(
-//       "/applications/my-applications"
-//     );
+  // HANDLE DIFFERENT RESPONSE SHAPES
 
-//     return response.map((app) => ({
-//       id: app._id,
+  const applications =
+    Array.isArray(response)
+      ? response
+      : response.applications || response.data || [];
 
-//       candidateId: app.user,
+  return applications.map((app: any) => ({
+    id: app._id || "",
 
-//       jobId: app.job?._id,
+    candidateId: app.user || "",
 
-//       title: app.job?.title,
+    jobId: app.job?._id || "",
 
-//       name: app.fullName,
+    title: app.job?.title || "Untitled Job",
 
-//       email: app.email,
+    name: app.fullName || "",
 
-//       status: app.status,
+    email: app.email || "",
 
-//       createdAt: app.createdAt,
-//     }));
-//   },
+    status:
+      app.status === "Seen"
+        ? "Seen"
+        : app.status === "Submitted"
+        ? "Submitted"
+        : "Pending",
 
-//   // APPLY JOB
+    createdAt:
+      app.createdAt || new Date().toISOString(),
+  }));
+},
 
-//   async submitApplication(
-//     jobId: string,
-//     jobTitle: string,
-//     data: ApplicationFormData
-//   ): Promise<{
-//     candidateId: string;
-//     applicationId: string;
-//   }> {
+  // APPLY JOB
 
-//     const payload = {
-//       jobId,
-//       jobTitle,
-//       ...data,
-//     };
+  async submitApplication(
+    jobId: string,
+    jobTitle: string,
+    data: ApplicationFormData
+  ): Promise<{
+    candidateId: string;
+    applicationId: string;
+  }> {
 
-//     return apiClient.post<{
-//       candidateId: string;
-//       applicationId: string;
-//     }>(
-//       "/applications/apply",
-//       payload
-//     );
-//   },
-//};
+    const payload = {
+      jobId,
+      jobTitle,
+      ...data,
+    };
+
+    return apiClient.post<{
+      candidateId: string;
+      applicationId: string;
+    }>(
+      "/applications/apply",
+      payload
+    );
+  },
+};

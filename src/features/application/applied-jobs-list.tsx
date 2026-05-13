@@ -80,7 +80,7 @@ export function AppliedJobsList() {
               <div className="col-span-5">
                 <h4 className="font-semibold text-lg mb-1">{app?.title}</h4>
                 <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                  <span className="flex items-center gap-1"><Building className="w-3.5 h-3.5" />Websfry Solutions </span>
+                  {/* <span className="flex items-center gap-1"><Building className="w-3.5 h-3.5" />Websfry Solutions </span> */}
                 </div>
               </div>
               
