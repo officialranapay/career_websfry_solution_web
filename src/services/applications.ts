@@ -35,60 +35,6 @@
 //   },
 // };
 
-
-
-
-// import { apiClient } from "./api-client";
-
-// import {
-//   Application,
-// } from "@/types";
-
-// import {
-//   ApplicationFormData,
-// } from "@/schemas/application";
-
-// export const applicationsService = {
-
-//   // GET APPLIED JOBS
-
-//   async getApplications():
-//     Promise<Application[]> {
-
-//     return apiClient.get<Application[]>(
-//       "/applications/my-applications"
-//     );
-//   },
-
-//   //APPLY JOB
-
-//   async submitApplication(
-//     jobId: string,
-//     jobTitle: string,
-//     data: ApplicationFormData
-//   ): Promise<{
-//     candidateId: string;
-//     applicationId: string;
-//   }> {
-
-//     const payload = {
-//       jobId,
-//       jobTitle,
-//       ...data,
-//     };
-
-//     return apiClient.post<{
-//       candidateId: string;
-//       applicationId: string;
-//     }>(
-//       "/applications/apply",
-//       payload
-//     );
-//   },
-// };
-
-
-
 // changes for applied form
 
 import { apiClient } from "./api-client";
