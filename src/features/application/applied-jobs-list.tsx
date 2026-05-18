@@ -269,38 +269,6 @@ export function AppliedJobsList() {
     );
   }
 
-
-  // updated replace code 130526
-//   if (!applications || applications.length === 0) {
-
-//   return (
-
-//     <>
-//       <div className="text-center py-20 bg-muted/20 border border-dashed border-border/50 rounded-3xl">
-
-//         <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-6">
-//           <Briefcase className="h-8 w-8 text-muted-foreground" />
-//         </div>
-
-//         <h3 className="text-xl font-heading font-semibold mb-2">
-//           No applications yet
-//         </h3>
-
-//         <p className="text-muted-foreground max-w-sm mx-auto">
-//           You haven't applied to any roles yet.
-//           Explore our open positions and find your next opportunity!
-//         </p>
-
-//       </div>
-
-//       {/* <OtpLoginModal
-//         isOpen={showOtpModal}
-//         onSuccess={handleOtpSuccess}
-//       /> */}
-//     </>
-//   );
-// }
-
   const getStatusSummary = () => {
     const total = applications.length;
     const underReview = applications.filter(a => a.status === "Seen").length;
@@ -363,9 +331,9 @@ export function AppliedJobsList() {
               
               <div className="col-span-4 mt-4 md:mt-0">
                 <StatusBadge status={app.status} />
-                <p className="text-xs text-muted-foreground mt-2">
+                {/* <p className="text-xs text-muted-foreground mt-2">
                   Application ID: {app.id || "N/A"}
-                </p>
+                </p> */}
               </div>
             </motion.div>
           ))}

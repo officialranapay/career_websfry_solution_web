@@ -36,15 +36,36 @@ expectedCTC: z.string().min(1, "Expected CTC is required."),
 
 noticePeriod: z.string().min(1, "Notice period is required."),
 
+// portfolioUrl: z
+//   .string()
+//   .url("Enter a valid portfolio URL.")
+//   .optional()
+//   .or(z.literal("")),
+
 portfolioUrl: z
   .string()
   .url("Enter a valid portfolio URL.")
   .optional()
   .or(z.literal("")),
 
+// linkedinUrl: z
+//   .string()
+//   .url("Enter a valid LinkedIn URL.")
+//   .optional()
+//   .or(z.literal("")),
+
 linkedinUrl: z
   .string()
   .url("Enter a valid LinkedIn URL.")
+  .refine(
+    (url) =>
+      url === "" ||
+      url.includes("linkedin.com"),
+    {
+      message:
+        "Only LinkedIn profile URL is allowed.",
+    }
+  )
   .optional()
   .or(z.literal("")),
 
@@ -58,7 +79,20 @@ skills: z
       (val) => val.split(",").filter((s) => s.trim().length > 0).length > 0,
       "Please enter at least one valid skill."
     ),
-  resumeLink: z.string().url("Please provide a valid URL (Google Drive link)."),
+  // resumeLink: z.string().url("Please provide a valid URL (Google Drive link)."),
+
+
+  resumeLink: z
+  .string()
+  .url("Enter a valid resume URL.")
+  .refine(
+    (url) =>
+      url.includes("drive.google.com"),
+    {
+      message:
+        "Only Google Drive resume link is allowed.",
+    }
+  ),
 });
 
 export type ApplicationFormData = z.infer<typeof applicationSchema>;

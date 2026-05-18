@@ -57,9 +57,28 @@ export function JobDetail({ id }: { id: string }) {
           <ChevronLeft className="h-4 w-4 mr-1" />
           Back to roles
         </Link>
-        <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:text-foreground">
+        {/* <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:text-foreground">
           <Share2 className="h-4 w-4" />
-        </Button>
+        </Button> */}
+
+        <Button
+  variant="ghost"
+  size="icon"
+  className="rounded-full text-muted-foreground hover:text-foreground"
+  onClick={async () => {
+    if (navigator.share) {
+      await navigator.share({
+        title: document.title,
+        url: window.location.href,
+      });
+    } else {
+      await navigator.clipboard.writeText(window.location.href);
+      alert("Link copied!");
+    }
+  }}
+>
+  <Share2 className="h-4 w-4" />
+</Button>
       </motion.div>
 
       {/* Job Header */}
@@ -114,20 +133,31 @@ export function JobDetail({ id }: { id: string }) {
       >
         <section>
           <h2 className="text-2xl font-heading font-bold text-foreground mb-4">About the Role</h2>
-          <p>{job.description}</p>
-        </section>
+          {/* <p>{job.description}</p> */}
+          <p>     <div
+  className="
+    text-muted-foreground
+    text-sm
+    mb-6
+    flex-grow
 
-        {/* <section>
-          <h2 className="text-2xl font-heading font-bold text-foreground mb-4">What You'll Do</h2>
-          <ul className="space-y-3">
-            {job.responsibilities.map((item, index) => (
-              <li key={index} className="flex items-start gap-3">
-                <CheckCircle2 className="h-6 w-6 text-primary shrink-0 mt-0.5" />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </section> */}
+    [&_ul]:list-disc
+    [&_ul]:pl-5
+
+    [&_ol]:list-decimal
+    [&_ol]:pl-5
+
+    [&_strong]:font-semibold
+    [&_em]:italic
+
+    [&_div]:mb-1
+    [&_p]:mb-1
+  "
+  dangerouslySetInnerHTML={{
+    __html: job.description,
+  }}
+/></p>
+        </section>
 
         <section>
           <h2 className="text-2xl font-heading font-bold text-foreground mb-4">What We're Looking For</h2>
@@ -140,18 +170,6 @@ export function JobDetail({ id }: { id: string }) {
             ))}
           </ul>
         </section>
-
-        {/* <section>
-          <h2 className="text-2xl font-heading font-bold text-foreground mb-4">Perks & Benefits</h2>
-          <ul className="space-y-3">
-            {job.perks.map((item, index) => (
-              <li key={index} className="flex items-start gap-3">
-                <CheckCircle2 className="h-6 w-6 text-primary shrink-0 mt-0.5" />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </section> */}
 
         <section>
           <h2 className="text-2xl font-heading font-bold text-foreground mb-4">Skills</h2>

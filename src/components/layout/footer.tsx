@@ -1,9 +1,71 @@
+"use client";
 import Link from "next/link";
 import { APP_NAME, ROUTES } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useState } from "react";
+import { toast } from "sonner"
 
 export function Footer() {
+
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const [message, setMessage] = useState("");
+
+  const handleSubscribe = async () => {
+
+    if (!email) {
+      setMessage("Please enter email");
+      return;
+    }
+
+    try {
+
+      setLoading(true);
+
+      setMessage("");
+
+      const response = await fetch(
+        "http://localhost:5000/api/auth/subscribe",
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json",
+          },
+
+          body: JSON.stringify({
+            email,
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data.message || "Subscription failed"
+        );
+      }
+
+      setMessage("Subscribed successfully");
+      toast("Stay tuned for new jobs ", { position: "bottom-right" })
+      setEmail("");
+      setMessage("");
+
+    } catch (error) {
+
+      console.error(error);
+
+      setMessage("Something went wrong");
+
+    } finally {
+
+      setLoading(false);
+    }
+  };
+
   return (
     <footer className="bg-muted/50 border-t border-border/50 pt-16 pb-8 mt-auto">
       <div className="container mx-auto px-4">
@@ -47,9 +109,17 @@ export function Footer() {
               Subscribe to our newsletter for the latest roles and tech news.
             </p>
             <div className="flex gap-2">
-              <Input placeholder="Enter your email" type="email" className="bg-background" />
-              <Button>Subscribe</Button>
+              <Input placeholder="Enter your email" type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} className="bg-background" />
+              <Button onClick={handleSubscribe}
+                disabled={loading}>{loading
+                  ? "Subscribing..."
+                  : "Subscribe"}</Button>
             </div>
+            {message && (
+              <p className="text-sm text-muted-foreground">
+                {message}
+              </p>
+            )}
           </div>
         </div>
 

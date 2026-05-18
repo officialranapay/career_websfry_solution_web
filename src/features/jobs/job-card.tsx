@@ -20,11 +20,32 @@ export function JobCard({ job }: { job: Job }) {
         <h3 className="text-xl font-semibold font-heading mb-3 group-hover:text-primary transition-colors line-clamp-2">
           {job.title}
         </h3>
-        
-        <p className="text-muted-foreground text-sm line-clamp-2 mb-6 flex-grow">
-          {job.description}
-        </p>
-        
+
+<div
+  className="
+    text-muted-foreground
+    text-sm
+    mb-6
+    flex-grow
+
+    line-clamp-2
+
+    [&_ul]:list-disc
+    [&_ul]:pl-5
+
+    [&_ol]:list-decimal
+    [&_ol]:pl-5
+
+    [&_strong]:font-semibold
+    [&_em]:italic
+
+    [&_div]:inline
+    [&_p]:inline
+  "
+  dangerouslySetInnerHTML={{
+    __html: job.description,
+  }}
+/>
         <div className="flex flex-wrap gap-y-2 gap-x-4 mb-6 text-sm text-muted-foreground">
           <div className="flex items-center gap-1.5">
             <MapPin className="h-4 w-4" />

@@ -110,22 +110,6 @@ export function SuccessModal({
 
               </p>
 
-              <div className="w-full p-4 rounded-xl bg-muted/50 border border-border/50 mb-8">
-
-                <p className="text-sm text-muted-foreground font-medium mb-1">
-
-                  Your Candidate ID
-
-                </p>
-
-                <p className="text-xl font-mono font-bold tracking-wider">
-
-                  {candidateId}
-
-                </p>
-
-              </div>
-
               <div className="w-full space-y-4">
 
                 <Button

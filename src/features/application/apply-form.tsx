@@ -55,19 +55,7 @@ const [errorMessage, setErrorMessage] =useState("");
 
   const submitMutation = useSubmitApplication();
 
-//   const onSubmit = async (data: ApplicationFormData) => {
-//   try {
 
-//     setFormData(data);
-
-//     await authService.requestOtp(data.phone);
-
-//     setShowOtpModal(true);
-
-//   } catch (error) {
-//     console.error("OTP request failed", error);
-//   }
-// };
 
 const onSubmit = async (
   data: ApplicationFormData
@@ -537,7 +525,7 @@ const handleVerifyOtp = async () => {
         {/* RESUME LINK */}
         <div className="space-y-2">
           <Label htmlFor="resumeLink">
-            Resume Link (Google Drive)
+            Resume Link (Share Public Google Drive)
           </Label>
 
           <Input
