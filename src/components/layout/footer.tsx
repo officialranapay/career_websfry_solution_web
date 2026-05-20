@@ -6,6 +6,10 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { toast } from "sonner"
 
+
+
+
+const BASE = process.env.NEXT_PUBLIC_BASE_URL ||"http://localhost:5000/api" ;
 export function Footer() {
 
   const [email, setEmail] = useState("");
@@ -25,12 +29,12 @@ export function Footer() {
       setLoading(true);
 
       setMessage("");
-
+      //  fetch(`${API_URL}/api/jobs`);
       const response = await fetch(
-        "http://localhost:5000/api/auth/subscribe",
+        `${BASE}/auth/subscribe`,
         {
           method: "POST",
-
+         
           headers: {
             "Content-Type": "application/json",
           },

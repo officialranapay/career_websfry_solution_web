@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
+const BASE = process.env.NEXT_PUBLIC_BASE_URL ||"http://localhost:5000/api";
 interface OtpLoginModalProps {
   isOpen: boolean;
   onSuccess: () => void;
@@ -38,8 +38,9 @@ export function OtpLoginModal({
         setLoading(true);
 
         const response =
+        //  "http://localhost:5000/api/auth/request-otp",
           await fetch(
-            "http://localhost:5000/api/auth/request-otp",
+            `${BASE}/auth/request-otp`,
             {
               method: "POST",
 
@@ -83,10 +84,10 @@ export function OtpLoginModal({
       try {
 
         setLoading(true);
-
+//   'http://localhost:5000/api/auth/verify-otp/,
         const response =
           await fetch(
-            "http://localhost:5000/api/auth/verify-otp",
+            `${BASE}/auth/verify-otp/`,
             {
               method: "POST",
 

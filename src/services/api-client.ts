@@ -65,7 +65,7 @@
 
 // updated code for applied job -:
 
-const API_URL = "http://localhost:5000/api";
+const BASE = process.env.NEXT_PUBLIC_BASE_URL ||"http://localhost:5000/api";
 
 export const apiClient = {
 
@@ -86,7 +86,7 @@ export const apiClient = {
     }
 
     const response = await fetch(
-      `${API_URL}${endpoint}`,
+      `${BASE}${endpoint}`,
       {
         method: "GET",
         headers,
@@ -130,7 +130,7 @@ export const apiClient = {
     }
 
     const response = await fetch(
-      `${API_URL}${endpoint}`,
+      `${BASE}${endpoint}`,
       {
         method: "POST",
         headers,

@@ -10,7 +10,7 @@ import { Card } from "@/components/ui/card";
 // adding  updated imports for login 130526
 import { useEffect, useState } from "react";
 //import { OtpLoginModal } from "@/components/shared/otp-login-modal";
-
+const BASE = process.env.NEXT_PUBLIC_BASE_URL ||"http://localhost:5000/api";
 export function AppliedJobsList() {
 
   // adding updated state for login 130526
@@ -56,7 +56,7 @@ export function AppliedJobsList() {
 
         const response =
           await fetch(
-            "http://localhost:5000/api/auth/request-otp",
+            `${BASE}/auth/request-otp`,
             {
               method: "POST",
 
@@ -106,7 +106,7 @@ export function AppliedJobsList() {
 
         const response =
           await fetch(
-            "http://localhost:5000/api/auth/verify-otp",
+            `${BASE}/auth/verify-otp`,
             {
               method: "POST",
 
