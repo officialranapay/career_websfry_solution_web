@@ -147,6 +147,8 @@ const handleVerifyOtp = async () => {
       otp
     );
 
+    setShowOtpModal(false);  // update hua
+
    // updated code 
      localStorage.setItem(
   "verifiedEmail",
@@ -166,7 +168,7 @@ const handleVerifyOtp = async () => {
 
 
     // FINAL APPLICATION SUBMIT
-
+     setShowOtpModal(false);
     const applicationResponse =
       await submitMutation.mutateAsync({
         jobId,
@@ -179,7 +181,7 @@ const handleVerifyOtp = async () => {
         applicationResponse.candidateId,
     });
 
-    setShowOtpModal(false);
+    // setShowOtpModal(false);
 
     reset();
 
@@ -567,12 +569,12 @@ const handleVerifyOtp = async () => {
 >
   <DialogContent className="sm:max-w-md">
 
-    <button
+    {/* <button
       onClick={() => setShowOtpModal(false)}
       className="absolute right-4 top-4 rounded-sm opacity-70 hover:opacity-100"
     >
       <X className="h-5 w-5" />
-    </button>
+    </button> */}
 
     <DialogHeader>
       <DialogTitle>

@@ -49,13 +49,13 @@ export function Navbar() {
             <Link href="/" className="flex items-end gap-2">
               <div className="block dark:hidden">
                 <span className="text-black text-xl font-semibold">
-                 {"{ "}Websfry<em className="italic font-semibold">Solution</em>{" }"}
+                 {"{ "}Webfry<em className="italic font-semibold">Solution</em>{" }"}
                 </span>
               </div>
 
               <div className="hidden dark:block">
                 <span className="text-white text-xl font-semibold">
-                  {"{ "}Websfry<em className="italic font-semibold">Solution</em>{" }"}
+                  {"{ "}Webfry<em className="italic font-semibold">Solution</em>{" }"}
                 </span>
               </div>
 

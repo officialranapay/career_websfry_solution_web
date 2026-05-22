@@ -86,13 +86,13 @@ export function Footer() {
                <Link href="/" className="flex items-end gap-2">
               <div className="block dark:hidden">
                 <span className="text-black text-xl font-semibold">
-                 {"{ "}Websfry<em className="italic font-semibold">Solution</em>{" }"}
+                 {"{ "}Webfry<em className="italic font-semibold">Solution</em>{" }"}
                 </span>
               </div>
 
               <div className="hidden dark:block">
                 <span className="text-white text-xl font-semibold">
-                  {"{ "}Websfry<em className="italic font-semibold">Solution</em>{" }"}
+                  {"{ "}Webfry<em className="italic font-semibold">Solution</em>{" }"}
                 </span>
               </div>
 
@@ -250,7 +250,7 @@ export function Footer() {
                 <div className="flex">
   {/* LinkedIn */}
   <a
-    href="https://www.linkedin.com/company/webfrysolutions"
+    href="https://www.linkedin.com/company/webfrysolution"
     target="_blank"
     rel="noopener noreferrer"
     className="text-gray-400 hover:text-white/80 size-10"
@@ -271,7 +271,7 @@ export function Footer() {
 
   {/* Instagram */}
   <a
-    href="https://www.instagram.com/websfrysolutions/"
+    href="https://www.instagram.com/webfrysolution/"
     target="_blank"
     rel="noopener noreferrer"
     className="text-gray-400 hover:text-white/80 size-10"

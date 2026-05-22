@@ -331,9 +331,6 @@ export function AppliedJobsList() {
               
               <div className="col-span-4 mt-4 md:mt-0">
                 <StatusBadge status={app.status} />
-                {/* <p className="text-xs text-muted-foreground mt-2">
-                  Application ID: {app.id || "N/A"}
-                </p> */}
               </div>
             </motion.div>
           ))}
