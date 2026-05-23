@@ -9,13 +9,11 @@ import { Card } from "@/components/ui/card";
 
 // adding  updated imports for login 130526
 import { useEffect, useState } from "react";
-//import { OtpLoginModal } from "@/components/shared/otp-login-modal";
 const BASE = process.env.NEXT_PUBLIC_BASE_URL ||"http://localhost:5000/api";
 export function AppliedJobsList() {
 
   // adding updated state for login 130526
    const [showOtpModal, setShowOtpModal] =useState(false);
-  //  const [userId, setUserId] =useState<string | null>(null);
    const [token,setToken] = useState<string | null>(null);
     // updated code
   const [email, setEmail] = useState("");
@@ -27,8 +25,8 @@ export function AppliedJobsList() {
 
    useEffect(() => {
 
-    // const storedUserId =
-    //   localStorage.getItem("userId");
+    const storedUserId =
+      localStorage.getItem("userId");
 
     const storedToken = localStorage.getItem('accessToken')  
 
@@ -41,11 +39,17 @@ export function AppliedJobsList() {
 
 
   //replace  updated code for login 130526
+//    const {
+//   data: applications,
+//   isLoading,
+//   refetch,
+// } = useApplications();
+
    const {
-  data: applications,
+  data: applications=[],
   isLoading,
   refetch,
-} = useApplications();
+} = useApplications(!!token);
 
  const handleSendOtp =
     async () => {
@@ -202,7 +206,7 @@ export function AppliedJobsList() {
 
               <input
                 type="text"
-                placeholder="Enter Mobile Number"
+                placeholder="Enter Email Id"
                 value={email}
                 onChange={(e) =>
                   setEmail(e.target.value)
@@ -271,28 +275,34 @@ export function AppliedJobsList() {
 
   const getStatusSummary = () => {
     const total = applications.length;
-    const underReview = applications.filter(a => a.status === "Seen").length;
-    const submitted = applications.filter(a => a.status === "Submitted").length;
+    const pending = applications.filter(a => a.status === "pending").length;
+    const seen = applications.filter(a => a.status === "seen").length;
+    // const accepted = applications.filter(a => a.status === "accepted").length;
+    const rejected = applications.filter(a => a.status === "rejected").length;
     
-    return { total, underReview, submitted };
+    return { total, pending,seen, rejected  };
   };
   const summary = getStatusSummary();
 
   return (
     <div className="space-y-8">
       {/* Stats row */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <Card className="p-6 bg-card border-border/50 shadow-none">
           <p className="text-sm text-muted-foreground font-medium mb-1">Total Applied</p>
-          <p className="text-3xl font-heading font-bold">{summary.total}</p>
+          <p className="text-3xl font-heading font-bold ">{summary.total}</p>
         </Card>
         <Card className="p-6 bg-card border-border/50 shadow-none">
-          <p className="text-sm text-muted-foreground font-medium mb-1">Under Review</p>
-          <p className="text-3xl font-heading font-bold text-amber-500">{summary.underReview}</p>
+          <p className="text-sm text-muted-foreground font-medium mb-1">Pending</p>
+          <p className="text-3xl font-heading font-bold text-amber-500">{summary.pending}</p>
         </Card>
         <Card className="p-6 bg-card border-border/50 shadow-none">
-          <p className="text-sm text-muted-foreground font-medium mb-1">Awaiting Review</p>
-          <p className="text-3xl font-heading font-bold text-blue-500">{summary.submitted}</p>
+          <p className="text-sm text-muted-foreground font-medium mb-1">Seen</p>
+          <p className="text-3xl font-heading font-bold text-blue-500">{summary.seen}</p>
+        </Card>
+           <Card className="p-6 bg-card border-border/50 shadow-none">
+          <p className="text-sm text-muted-foreground font-medium mb-1">Rejected</p>
+          <p className="text-3xl font-heading font-bold text-red-500">{summary.rejected}</p>
         </Card>
       </div>
 
@@ -300,8 +310,8 @@ export function AppliedJobsList() {
       <div className="bg-card border border-border/50 rounded-2xl overflow-hidden shadow-sm">
         <div className="px-6 py-4 border-b border-border/50 bg-muted/20 hidden md:grid grid-cols-12 gap-4 text-sm font-medium text-muted-foreground">
           <div className="col-span-5">Role</div>
-          <div className="col-span-3">Date Applied</div>
-          <div className="col-span-4">Status</div>
+          <div className="col-span-3 ml-8">Date Applied</div>
+          <div className="col-span-4 ml-46">Status</div>
         </div>
         
         <div className="divide-y divide-border/50">
@@ -320,7 +330,7 @@ export function AppliedJobsList() {
                 </div>
               </div>
               
-              <div className="col-span-3 flex items-center gap-2 text-sm text-muted-foreground mt-2 md:mt-0">
+              <div className="col-span-3 flex items-center gap-2 text-sm text-muted-foreground mt-2 md:mt-0 ml-8">
                 <Calendar className="w-4 h-4 md:hidden" />
                 {new Date(app?.createdAt).toLocaleDateString(undefined, { 
                   year: 'numeric', 
@@ -328,10 +338,15 @@ export function AppliedJobsList() {
                   day: 'numeric' 
                 })}
               </div>
-              
-              <div className="col-span-4 mt-4 md:mt-0">
-                <StatusBadge status={app.status} />
-              </div>
+
+              <div className="col-span-4 mt-4 md:mt-0 ml-46">
+
+  <StatusBadge
+
+    status={app.status}
+  />
+
+</div>
             </motion.div>
           ))}
         </div>

@@ -39,7 +39,8 @@ const type: "Day" | "Night" | "Flexible" =
 export const jobsService = {
   async getJobs(page = 1, pageSize = 6, category?: string): Promise<PaginatedResponse<Job>> {
     // Backend doesn't support pagination/filtering natively, so we fetch all and paginate/filter on frontend
-    const allBackendJobs = await apiClient.get<any[]>('/jobs');
+    const allBackendJobs = await apiClient.get<any[]>('/jobs/allJobsUser');
+    console.log(allBackendJobs, "all jobs")
     let allJobs = allBackendJobs.map(mapBackendJobToFrontend);
 
     if (category && category !== "All") {

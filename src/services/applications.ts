@@ -1,40 +1,3 @@
-// apply form ke liye currect code -:
-
-// import { apiClient } from "./api-client";
-// import { Application } from "@/types";
-// import { ApplicationFormData } from "@/schemas/application";
-
-// export const applicationsService = {
-//   async getApplications(): Promise<Application[]> {
-//     const response = await apiClient.get<Application[]>("/applications");
-
-//     return response;
-//   },
-
-//   async submitApplication(
-//     jobId: string,
-//     jobTitle: string,
-//     data: ApplicationFormData
-//   ): Promise<{
-//     candidateId: string;
-//     applicationId: string;
-//   }> {
-
-//     const payload = {
-//       jobId,
-//       jobTitle,
-//       ...data,
-//     };
-
-//     const response = await apiClient.post<{ candidateId: string; applicationId: string }>(
-//       "/applications/apply",
-//       payload
-//     );
-
-//     return response;
-//   },
-// };
-
 // changes for applied form
 
 import { apiClient } from "./api-client";
@@ -74,11 +37,13 @@ export const applicationsService = {
     email: app.email || "",
 
     status:
-      app.status === "Seen"
-        ? "Seen"
-        : app.status === "Submitted"
-        ? "Submitted"
-        : "Pending",
+  app.status === "seen"
+    ? "seen"
+
+    : app.status === "rejected"
+    ? "rejected"
+
+    : "pending",
 
     createdAt:
       app.createdAt || new Date().toISOString(),

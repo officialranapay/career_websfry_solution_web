@@ -23,7 +23,10 @@ export interface Job {
   featured?: boolean;
 }
 
-export type ApplicationStatus = "Submitted" | "Seen" | "Pending";
+export type ApplicationStatus =
+  | "pending"
+  | "seen"
+  | "rejected";
 
 export interface Application {
   id: string;

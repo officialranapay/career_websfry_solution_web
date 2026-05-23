@@ -341,21 +341,6 @@ export function Footer() {
                   ? "Subscribing..."
                   : "Subscribe"}</Button>
             </div>
-
-              {/* <form>
-                  <div className="flex flex-col items-center gap-2 w-full sm:max-w-64">
-                    <input
-                      type="email"
-                      placeholder="Enter your email"
-                      className="w-full h-12 p-4 text-sm text-white border border-gray-700 rounded-full placeholder:text-center placeholder:text-gray-400 placeholder:text-sm text-center placeholder:font-normal focus:outline-0"
-                      required
-                    />
-                    <button className="w-full px-6 py-3 text-sm font-medium text-white transition rounded-full cursor-pointer bg-primary-500 hover:bg-primary-600"   onClick={handleSubscribe}
-                >
-                      Subscribe Now
-                    </button>
-                  </div>
-                </form> */}
             {message && (
               <p className="text-sm text-muted-foreground">
                 {message}

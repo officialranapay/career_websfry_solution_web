@@ -36,14 +36,6 @@ export function Navbar() {
       )}
     >
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        {/* <Link href={ROUTES.HOME} className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-lg">W</span>
-          </div>
-          <span className="font-heading font-bold text-xl tracking-tight hidden sm:inline-block">
-            {APP_NAME}
-          </span>
-        </Link> */}
 
          <div className="flex items-center">
             <Link href="/" className="flex items-end gap-2">
@@ -58,11 +50,6 @@ export function Navbar() {
                   {"{ "}Webfry<em className="italic font-semibold">Solution</em>{" }"}
                 </span>
               </div>
-
-
-              {/* <span className="inline-block px-1.5 py-0.5 rounded-lg rounded-bl-none bg-primary-500/90 text-white text-xs font-medium mb-0.5">
-                Live Now
-              </span> */}
             </Link>
           </div>
 

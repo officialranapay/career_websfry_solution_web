@@ -114,14 +114,6 @@ export function JobDetail({ id }: { id: string }) {
             <span>Posted {new Date(job.postedAt).toLocaleDateString()}</span>
           </div>
         </div>
-
-        {/* <div className="p-6 rounded-2xl bg-muted/50 border border-border/50 flex flex-col sm:flex-row items-center justify-between gap-6">
-          {/* <div>
-            <p className="text-sm text-muted-foreground font-medium mb-1">Salary</p>
-            <p className="text-2xl font-bold">{job.salary}</p>
-          </div> */}
-          {/* <Link href={`${ROUTES.JOBS}/${job.id}/apply`} className={buttonVariants({ size: "lg", className: "w-full sm:w-auto rounded-full px-8 text-lg ml-170" })}>Apply Now</Link>
-        </div>  */}
       </motion.div>
 
       {/* Job Content */}

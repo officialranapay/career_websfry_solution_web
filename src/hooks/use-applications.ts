@@ -2,30 +2,36 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { applicationsService } from "@/services/applications";
 import { ApplicationFormData } from "@/schemas/application";
 
-
-// currect code till applied job 130526
 // export const useApplications = () => {
+
+//   const userId =
+//     typeof window !== "undefined"
+//       ? localStorage.getItem("userId")
+//       : null;
+
 //   return useQuery({
-//     queryKey: ["applications"],
-//     queryFn: () => applicationsService.getApplications(),
+//     queryKey: ["applications", userId],
+
+//     queryFn: () =>
+//       applicationsService.getApplications(),
+
+//     enabled: !!userId,
 //   });
 // };
 
-// eska updated code 130526
-export const useApplications = () => {
-
-  const userId =
-    typeof window !== "undefined"
-      ? localStorage.getItem("userId")
-      : null;
+export const useApplications = (
+  enabled: boolean
+) => {
 
   return useQuery({
-    queryKey: ["applications", userId],
+
+    queryKey: ["applications"],
 
     queryFn: () =>
       applicationsService.getApplications(),
 
-    enabled: !!userId,
+    enabled,
+    retry: false,
   });
 };
 
