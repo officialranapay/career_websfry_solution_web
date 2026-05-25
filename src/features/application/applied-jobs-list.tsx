@@ -9,7 +9,7 @@ import { Card } from "@/components/ui/card";
 
 // adding  updated imports for login 130526
 import { useEffect, useState } from "react";
-const BASE = process.env.NEXT_PUBLIC_BASE_URL ||"http://localhost:5000/api";
+const BASE = process.env.NEXT_PUBLIC_BASE_URL;
 export function AppliedJobsList() {
 
   // adding updated state for login 130526

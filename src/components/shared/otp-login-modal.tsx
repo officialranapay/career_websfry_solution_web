@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-const BASE = process.env.NEXT_PUBLIC_BASE_URL ||"http://localhost:5000/api";
+const BASE = process.env.NEXT_PUBLIC_BASE_URL;
 interface OtpLoginModalProps {
   isOpen: boolean;
   onSuccess: () => void;

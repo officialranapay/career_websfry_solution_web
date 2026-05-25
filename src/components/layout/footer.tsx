@@ -9,7 +9,7 @@ import { toast } from "sonner"
 
 
 
-const BASE = process.env.NEXT_PUBLIC_BASE_URL ||"http://localhost:5000/api" ;
+const BASE = process.env.NEXT_PUBLIC_BASE_URL ;
 export function Footer() {
 
   const [email, setEmail] = useState("");
