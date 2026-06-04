@@ -291,7 +291,7 @@ const handleVerifyOtp = async () => {
           </div>
 
           {/* DATE OF BIRTH */}
-          <div className="space-y-2">
+          {/* <div className="space-y-2">
             <Label htmlFor="dateOfBirth">Date Of Birth</Label>
             <Input
               id="dateOfBirth"
@@ -303,10 +303,23 @@ const handleVerifyOtp = async () => {
                 {errors.dateOfBirth.message}
               </p>
             )}
-          </div>
+          </div> */}
+   <Input
+  id="dateOfBirth"
+  type="date"
+  max={
+    new Date(
+      new Date().setFullYear(
+        new Date().getFullYear() - 18
+      )
+    )
+      .toISOString()
+      .split("T")[0]
+  }
+  {...register("dateOfBirth")}/>
 
           {/* GENDER */}
-          <div className="space-y-2">
+          {/* <div className="space-y-2">
             <Label htmlFor="gender">Gender</Label>
             <Input
               id="gender"
@@ -319,6 +332,34 @@ const handleVerifyOtp = async () => {
                 {errors.gender.message}
               </p>
             )}
+          </div> */}
+          <div className="space-y-2">
+  <Label htmlFor="gender">Gender</Label>
+
+  <select
+    id="gender"
+    {...register("gender")}
+    className="
+      flex h-10 w-full rounded-md border border-input
+      bg-background px-3 py-2 text-sm
+      ring-offset-background
+      focus-visible:outline-none
+      focus-visible:ring-2
+      focus-visible:ring-ring
+      focus-visible:ring-offset-2
+    "
+  >
+    <option value="">Select Gender</option>
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+    <option value="Other">Other</option>
+  </select>
+
+  {errors.gender && (
+    <p className="text-sm text-destructive">
+      {errors.gender.message}
+    </p>
+  )}
           </div>
 
           {/* CURRENT CITY */}
@@ -388,7 +429,7 @@ const handleVerifyOtp = async () => {
           </div>
 
           {/* PASSING YEAR */}
-          <div className="space-y-2">
+          {/* <div className="space-y-2">
             <Label htmlFor="passingYear">Passing Year</Label>
             <Input
               id="passingYear"
@@ -401,7 +442,39 @@ const handleVerifyOtp = async () => {
                 {errors.passingYear.message}
               </p>
             )}
-          </div>
+          </div> */}
+         <div className="space-y-2">
+  <Label htmlFor="passingYear">Passing Year</Label>
+
+  <select
+    id="passingYear"
+    {...register("passingYear")}
+    className="
+      flex h-10 w-full rounded-md border border-input
+      bg-background px-3 py-2 text-sm
+      ring-offset-background
+      focus:outline-none focus:ring-2 focus:ring-ring
+      focus:ring-offset-2
+    "
+  >
+    <option value="">Select Passing Year</option>
+
+    {Array.from({ length: 31 }, (_, i) => {
+      const year = 2000 + i;
+      return (
+        <option key={year} value={year}>
+          {year}
+        </option>
+      );
+    })}
+  </select>
+
+  {errors.passingYear && (
+    <p className="text-sm text-destructive">
+      {errors.passingYear.message}
+    </p>
+  )}
+         </div>
 
           {/* CURRENT CTC */}
           <div className="space-y-2">
