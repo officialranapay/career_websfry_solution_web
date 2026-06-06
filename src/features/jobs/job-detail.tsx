@@ -64,7 +64,7 @@ export function JobDetail({ id }: { id: string }) {
         <Button
   variant="ghost"
   size="icon"
-  className="rounded-full text-muted-foreground hover:text-foreground"
+  className="rounded-full text-muted-foreground hover:text-foreground cursor-pointer"
   onClick={async () => {
     if (navigator.share) {
       await navigator.share({

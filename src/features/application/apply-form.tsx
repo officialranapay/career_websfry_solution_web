@@ -306,6 +306,7 @@ const handleVerifyOtp = async () => {
           </div> */}
    <Input
   id="dateOfBirth"
+  className="cursor-pointer"
   type="date"
   max={
     new Date(
@@ -347,6 +348,7 @@ const handleVerifyOtp = async () => {
       focus-visible:ring-2
       focus-visible:ring-ring
       focus-visible:ring-offset-2
+      cursor-pointer
     "
   >
     <option value="">Select Gender</option>
@@ -450,7 +452,7 @@ const handleVerifyOtp = async () => {
     id="passingYear"
     {...register("passingYear")}
     className="
-      flex h-10 w-full rounded-md border border-input
+      flex h-10 w-full rounded-md border border-input cursor-pointer
       bg-background px-3 py-2 text-sm
       ring-offset-background
       focus:outline-none focus:ring-2 focus:ring-ring
@@ -621,7 +623,7 @@ const handleVerifyOtp = async () => {
         <Button
           type="submit"
           size="lg"
-          className="w-full md:w-auto px-10 h-12 rounded-full text-base"
+          className="w-full md:w-auto px-10 h-12 rounded-full text-base cursor-pointer"
           disabled={submitMutation.isPending}
         >
           {submitMutation.isPending ? (

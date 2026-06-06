@@ -21,9 +21,9 @@ export function JobFilters({ activeCategory, onCategoryChange }: JobFiltersProps
 
   if (isLoading) {
     return (
-      <div className="flex gap-3 overflow-x-auto pb-4 scrollbar-hide">
+      <div className="flex gap-3 overflow-x-auto pb-4 scrollbar-hide ">
         {[1, 2, 3, 4, 5].map((i) => (
-          <Skeleton key={i} className="h-10 w-24 rounded-full flex-shrink-0" />
+          <Skeleton key={i} className="h-10 w-24 rounded-full flex-shrink-0 " />
         ))}
       </div>
     );

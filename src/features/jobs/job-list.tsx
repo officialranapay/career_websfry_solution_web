@@ -27,7 +27,7 @@ export function JobList() {
       {isLoading ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[1, 2, 3, 4, 5, 6].map((i) => (
-            <Skeleton key={i} className="h-72 rounded-2xl" />
+            <Skeleton key={i} className="h-72 rounded-2xl cursor-pointer" />
           ))}
         </div>
       ) : data?.data.length === 0 ? (
@@ -49,7 +49,7 @@ export function JobList() {
         <>
           <motion.div 
             layout
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 "
           >
             <AnimatePresence mode="popLayout">
               {data?.data.map((job, index) => (
@@ -100,7 +100,7 @@ export function JobList() {
                 size="icon"
                 onClick={() => setPage((p) => Math.min(data.totalPages, p + 1))}
                 disabled={page === data.totalPages}
-                className="rounded-full"
+                className="rounded-full cursor-pointer"
               >
                 <ChevronRight className="h-4 w-4" />
                 <span className="sr-only">Next Page</span>

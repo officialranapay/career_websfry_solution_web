@@ -47,7 +47,7 @@ export function CategoriesSection() {
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                   className="flex items-center gap-3 px-6 py-4 rounded-full bg-background border border-border/50 hover:border-primary/50 hover:shadow-sm transition-all cursor-pointer group"
                 >
-                  <Icon className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                  <Icon className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors cursor-pointer" />
                   <span className="font-medium text-foreground">{category}</span>
                 </motion.div>
               );

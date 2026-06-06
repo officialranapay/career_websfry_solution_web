@@ -58,7 +58,7 @@ export function HeroSection() {
             Explore Open Roles
             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
           </Link>
-          <Button size="lg" variant="outline" className="h-14 px-8 text-lg rounded-full w-full sm:w-auto glass-card border-border/50">
+          <Button size="lg" variant="outline" className="h-14 px-8 text-lg rounded-full w-full sm:w-auto glass-card border-border/50 cursor-pointer">
             Learn More
           </Button>
         </motion.div>

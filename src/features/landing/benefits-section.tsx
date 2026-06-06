@@ -45,7 +45,7 @@ export function BenefitsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group p-8 rounded-3xl bg-card border border-border/50 hover:border-primary/50 transition-colors"
+              className="group p-8 rounded-3xl bg-card border border-border/50 hover:border-primary/50 transition-colors cursor-pointer"
             >
               <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-primary/20 transition-all">
                 <benefit.icon className="h-7 w-7 text-primary" />

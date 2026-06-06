@@ -54,7 +54,7 @@ export function Navbar() {
           </div>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-6 cursor-pointer">
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -75,6 +75,7 @@ export function Navbar() {
         <div className="flex items-center gap-4 md:hidden">
           <ThemeToggle />
           <Button
+          className="cursor-pointer"
             variant="ghost"
             size="icon"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

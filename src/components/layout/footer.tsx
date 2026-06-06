@@ -337,6 +337,7 @@ export function Footer() {
             <div className="flex gap-2">
               <Input placeholder="Enter your email" type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} className="bg-background w-65" />
               <Button onClick={handleSubscribe}
+              className="cursor-pointer"
                 disabled={loading}>{loading
                   ? "Subscribing..."
                   : "Subscribe"}</Button>
