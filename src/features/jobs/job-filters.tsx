@@ -38,7 +38,7 @@ export function JobFilters({ activeCategory, onCategoryChange }: JobFiltersProps
             key={category}
             onClick={() => onCategoryChange(category)}
             className={cn(
-              "px-5 py-2 rounded-full text-sm font-medium transition-all duration-200",
+              "px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 cursor-pointer",
               activeCategory === category
                 ? "bg-primary text-primary-foreground shadow-md shadow-primary/20"
                 : "bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground border border-transparent hover:border-border"
