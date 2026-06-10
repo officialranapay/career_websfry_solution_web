@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 import { SectionHeading } from "@/components/shared/section-heading";
 
 const stats = [
-  { label: "Team Members", value: "150+" },
-  { label: "Global Offices", value: "4" },
-  { label: "Projects Shipped", value: "2M+" },
-  { label: "Funding Raised", value: "$40M" },
+  { label: "Team Members", value: "50+" },
+  // { label: "Global Offices", value: "4" },
+  { label: "Projects Shipped", value: "100+" },
+  // { label: "Funding Raised", value: "$40M" },
 ];
 
 export function CompanyIntro() {

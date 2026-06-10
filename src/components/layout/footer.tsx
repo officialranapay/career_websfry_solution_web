@@ -73,16 +73,8 @@ export function Footer() {
   return (
     <footer className="bg-muted/50 border-t border-border/50 pt-16 pb-8 mt-auto">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 mb-12">
-          <div className="col-span-1 md:col-span-1">
-            {/* <Link href={ROUTES.HOME} className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-lg">W</span>
-              </div>
-              <span className="font-heading font-bold text-xl tracking-tight">
-                {APP_NAME}
-              </span>
-            </Link> */}
+        <div className="flex justify-between">
+          <div className="col-span-1 md:col-span-1 w-70">
                <Link href="/" className="flex items-end gap-2">
               <div className="block dark:hidden">
                 <span className="text-black text-xl font-semibold">
@@ -96,10 +88,6 @@ export function Footer() {
                 </span>
               </div>
 
-
-              {/* <span className="inline-block px-1.5 py-0.5 rounded-lg rounded-bl-none bg-primary-500/90 text-white text-xs font-medium mb-0.5">
-                Live Now
-              </span> */}
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed mb-6">
               Empowering the future of technology by connecting brilliant minds with extraordinary opportunities.
@@ -250,7 +238,7 @@ export function Footer() {
                 <div className="flex">
   {/* LinkedIn */}
   <a
-    href="https://www.linkedin.com/company/webfrysolution"
+    href="https://www.linkedin.com/company/webfrysolutions"
     target="_blank"
     rel="noopener noreferrer"
     className="text-gray-400 hover:text-white/80 size-10"
@@ -271,7 +259,7 @@ export function Footer() {
 
   {/* Instagram */}
   <a
-    href="https://www.instagram.com/webfrysolution/"
+    href="https://www.instagram.com/websfrysolutions"
     target="_blank"
     rel="noopener noreferrer"
     className="text-gray-400 hover:text-white/80 size-10"
@@ -310,7 +298,7 @@ export function Footer() {
 
           </div>
 
-          <div>
+          {/* <div>
             <h4 className="font-semibold mb-4">Company</h4>
             <ul className="space-y-3">
               <li><Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">About Us</Link></li>
@@ -327,9 +315,9 @@ export function Footer() {
               <li><Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Interview Guide</Link></li>
               <li><Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Help Center</Link></li>
             </ul>
-          </div>
+          </div> */}
 
-          <div>
+          <div className="w-90">
             <h4 className="font-semibold mb-4">Stay Updated</h4>
             <p className="text-sm text-muted-foreground mb-4">
               Subscribe to our newsletter for the latest roles and tech news.
@@ -355,8 +343,8 @@ export function Footer() {
             © {new Date().getFullYear()} {APP_NAME}. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            <Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Privacy Policy</Link>
-            <Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Terms of Service</Link>
+            <Link href="/privacy-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors">Privacy Policy</Link>
+            <Link href="/term-of-services" className="text-sm text-muted-foreground hover:text-primary transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>
