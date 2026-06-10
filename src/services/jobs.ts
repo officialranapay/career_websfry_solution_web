@@ -65,10 +65,13 @@ export const jobsService = {
     try {
       // Temporarily fetching all jobs to find by ID since backend might not have GET /:id yet
       // If we implement GET /:id on backend, we can just do: apiClient.get<any>(`/jobs/${id}`)
-    const allBackendJobs = await apiClient.get<any[]>('/jobs');
-      const backendJob = allBackendJobs.find(j => j._id === id);
-      if (!backendJob) throw new Error("Job not found");
-      return mapBackendJobToFrontend(backendJob);
+    // const allBackendJobs = await apiClient.get<any[]>('/jobs');
+    //   const backendJob = allBackendJobs.find(j => j._id === id);
+    //   if (!backendJob) throw new Error("Job not found");
+    //   return mapBackendJobToFrontend(backendJob);
+    const backendJobs = await apiClient.get<any>(`/jobs/singleJob/${id}`);
+      if (!backendJobs) throw new Error("Job not found");
+      return mapBackendJobToFrontend(backendJobs);
     } catch (err) {
       throw err;
     }
