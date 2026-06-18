@@ -186,7 +186,9 @@ export function JobDetail({ id }: { id: string }) {
         <p className="text-muted-foreground mb-8 max-w-lg">
           We're excited to learn more about you. Submit your application below and we'll be in touch soon.
         </p>
-        <Link href={`${ROUTES.JOBS}/${job.id}/apply`} className={buttonVariants({ size: "lg", className: "rounded-full px-12 h-14 text-lg" })}>Apply for this role</Link>
+        <Link     href={`${ROUTES.JOBS}/${job.title
+    .toLowerCase()
+    .replace(/\s+/g, "-")}-${job.id}/apply`} className={buttonVariants({ size: "lg", className: "rounded-full px-12 h-14 text-lg" })}>Apply for this role</Link>
       </motion.div>
     </div>
   );

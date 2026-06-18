@@ -13,13 +13,14 @@ export const metadata: Metadata = {
 
 export default async function ApplyPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = await params;
+  const jobId =resolvedParams.id.split("-").pop() || "";
   
 
 
   // console.log("this is job page")
   // In a real app we'd fetch this Server-Side, but for this mock we'll use our service directly
   // Actually, because it's a mock that returns a Promise, we can just await it
-  const job = await jobsService.getJobById(resolvedParams.id).catch(() => null);
+  const job = await jobsService.getJobById(jobId).catch(() => null);
 
   if (!job) {
     return (
@@ -37,7 +38,9 @@ export default async function ApplyPage({ params }: { params: Promise<{ id: stri
     <PageTransition>
       <div className="container max-w-3xl mx-auto px-4 py-8 md:py-12">
         <Link 
-          href={`${ROUTES.JOBS}/${job.id}`}
+            href={`${ROUTES.JOBS}/${job.title
+    .toLowerCase()
+    .replace(/\s+/g, "-")}-${job.id}`}
           className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors mb-8"
         >
           <ChevronLeft className="h-4 w-4 mr-1" />

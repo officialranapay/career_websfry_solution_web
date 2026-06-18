@@ -5,8 +5,15 @@ import { MapPin, Briefcase, Clock, ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 export function JobCard({ job }: { job: Job }) {
+    
   return (
-    <Link href={`${ROUTES.JOBS}/${job.id}`} className="block group h-full">
+<Link
+  href={`${ROUTES.JOBS}/${job.title
+    .toLowerCase()
+    .replace(/\s+/g, "-")}-${job.id}`}
+  className="block group h-full"
+>
+
       <div className="h-full p-6 rounded-2xl bg-card border border-border/50 group-hover:border-primary/50 group-hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:group-hover:shadow-[0_8px_30px_rgb(255,255,255,0.04)] transition-all flex flex-col">
         <div className="flex justify-between items-start mb-4">
           <Badge variant="secondary" className="bg-primary/10 text-primary hover:bg-primary/20">
